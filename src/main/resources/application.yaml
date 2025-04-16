@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: dockuper-api
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/testdb
+    username: h2db
+    password: h2db
+
+  sql:
+    init.mode: always
+  h2:
+    console.enabled: true
