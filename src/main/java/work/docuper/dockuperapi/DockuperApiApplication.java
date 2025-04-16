@@ -1,4 +1,4 @@
-package work.docuper.dockuper_api;
+package work.docuper.dockuperapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
