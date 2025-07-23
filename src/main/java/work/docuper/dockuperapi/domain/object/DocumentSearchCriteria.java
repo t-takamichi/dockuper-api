@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DocumentSearchCriteria {
     private Integer id;
-    private String title ;
+    private String title;
     private String body;
 }
