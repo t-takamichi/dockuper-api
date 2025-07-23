@@ -9,4 +9,5 @@ import java.util.List;
 public interface DocumentRepository {
     List<DocumentDomain> findAll();
     List<DocumentDomain> findByCriteria(DocumentSearchCriteria criteria);
+    DocumentDomain save(DocumentDomain documentDomain);
 }

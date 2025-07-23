@@ -1,7 +1,15 @@
 package work.docuper.dockuperapi.application.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import work.docuper.dockuperapi.application.request.InputCreateDocument;
 import work.docuper.dockuperapi.application.request.InputSearchDocument;
 import work.docuper.dockuperapi.domain.object.DocumentDomain;
 import work.docuper.dockuperapi.domain.object.DocumentSearchCriteria;
@@ -38,5 +46,19 @@ public class DocumentController {
                 .stream()
                 .map(DocumentDomain::toResponse)
                 .collect(Collectors.toList());
+    }
+
+    @RequestMapping(path = "/save", method = RequestMethod.POST)
+    public ResponseEntity<OutputDocument> save(@RequestBody InputCreateDocument createDocument) {
+        DocumentDomain documentDomain = DocumentDomain.builder()
+                .body(createDocument.getBody())
+                .title(createDocument.getTitle())
+                .build();
+
+        DocumentDomain responseDocument = documentService.save(documentDomain);
+        if (responseDocument != null) {
+            return new ResponseEntity<>(responseDocument.toResponse(), HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }

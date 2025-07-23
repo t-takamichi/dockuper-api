@@ -1,6 +1,10 @@
 package work.docuper.dockuperapi.domain.object;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import work.docuper.dockuperapi.application.response.OutputDocument;
 
 import java.util.Date;

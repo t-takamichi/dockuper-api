@@ -33,4 +33,8 @@ public class DocumentService {
     public List<DocumentDomain> searchDocument(DocumentSearchCriteria documentSearchCriteria) {
         return documentRepository.findByCriteria(documentSearchCriteria);
     }
+
+    public DocumentDomain save(DocumentDomain documentDomain) {
+        return documentRepository.save(documentDomain);
+    }
 }
