@@ -1,3 +1,4 @@
+DELETE FROM document;
 INSERT INTO document(title,body) VALUES('赤ボールペン','test01');
 INSERT INTO document(title,body) VALUES('青ボールペン','test02');
 INSERT INTO document(title,body) VALUES('スケッチブック','test03');
