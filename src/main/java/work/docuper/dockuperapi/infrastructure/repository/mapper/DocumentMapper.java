@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -15,16 +16,17 @@ import java.util.List;
 
 @Mapper
 public interface DocumentMapper {
-    @Select("select * from document")
-    List<DocumentDomain> findAll();
-
-    @Results({
+    @Results(id = "documentResultMap", value = { // IDを付けて定義
             @Result(property = "documentId", column = "documentId", id = true),
             @Result(property = "title", column = "title"),
             @Result(property = "body", column = "body"),
             @Result(property = "createdAt", column = "created_at"),
             @Result(property = "updatedAt", column = "updated_at")
     })
+    @Select("select * from document")
+    List<DocumentDomain> findAll();
+
+    @ResultMap("documentResultMap")
     @SelectProvider(type = DocumentSqlProvider.class, method = "findByCriteriaSql")
     List<DocumentDomain> findByCriteria(DocumentSearchCriteria criteria);
 
@@ -33,13 +35,7 @@ public interface DocumentMapper {
     void insertDocument(DocumentEntity entity);
 
 
-    @Results({
-            @Result(property = "documentId", column = "documentId", id = true),
-            @Result(property = "title", column = "title"),
-            @Result(property = "body", column = "body"),
-            @Result(property = "createdAt", column = "created_at"),
-            @Result(property = "updatedAt", column = "updated_at")
-    })
+    @ResultMap("documentResultMap")
     @Select("select * from document where documentId = #{id}")
     DocumentDomain findByDocumentId(Integer id);
 
