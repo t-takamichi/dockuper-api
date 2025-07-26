@@ -2,6 +2,7 @@ package work.docuper.dockuperapi.infrastructure.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import work.docuper.dockuperapi.domain.object.DocumentDomain;
 import work.docuper.dockuperapi.domain.object.DocumentSearchCriteria;
 import work.docuper.dockuperapi.domain.repository.DocumentRepository;
@@ -25,6 +26,7 @@ public class DocumentRepositoryImpl implements DocumentRepository {
     }
 
     @Override
+    @Transactional
     public DocumentDomain save(DocumentDomain documentDomain) {
         DocumentEntity documentEntity = DocumentEntity.builder()
                 .title(documentDomain.getTitle())
